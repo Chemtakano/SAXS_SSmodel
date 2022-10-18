@@ -1,6 +1,6 @@
 import pandas as pd
-import matplotlib.pyplot as plt
 import numpy as np
+import openpyxl as opx
 
 def data(path):
     df=pd.read_csv(path, skiprows=1, usecols=[0,4], header=None, names=['q','i'])
@@ -43,6 +43,21 @@ def theory_sphere(I0, R, sigma, q_min, q_max, points, sigma_resol):
         return Int_li
     
     return qq, Intensity()
+
+def export(data, params, path):
+    df=pd.DataFrame(data, index=["q", "I(q)"])
+    dfT=df.T
+    df2 = pd.json_normalize(params)
+    
+    workbook = opx.Workbook()
+    workbook.save(path+'.xlsx')
+    
+    with pd.ExcelWriter(path+'.xlsx') as writer:
+        dfT.to_excel(writer, index=None, sheet_name='profile')
+        df2.to_excel(writer, sheet_name='parmeters', index=False)
+    
+
+
 
 """
 def MW_Mn(I0):
