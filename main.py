@@ -1,5 +1,4 @@
 import PySimpleGUI as sg
-import pyperclip
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import theo_module as tm
 import matplotlib.pyplot as plt
