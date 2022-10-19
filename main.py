@@ -115,9 +115,13 @@ while True:
         theoryplot()
     if event=='-SLIDER-I0-' or event=='-SLIDER-R-' or event=='-SLIDER-sigma-' or event=='-SLIDER-q_min-'or event=='-SLIDER-q_max-' or event=='-SLIDER-points-' or event=='-SLIDER-sigma_resol-':
         ax.cla()
-        setfig()
-        dataplot()
-        theoryplot()
+        if value['filepath']=='':
+            setfig()
+            theoryplot()
+        else:
+            setfig()
+            dataplot()
+            theoryplot()
     if event=='btn3':
         ax.cla()
         setfig()
