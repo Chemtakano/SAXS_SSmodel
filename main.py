@@ -84,6 +84,7 @@ def theoryplot():
     q_max=float(value['-SLIDER-q_max-'])
     points=int(value['-SLIDER-points-'])
     sigma_resol=int(value['-SLIDER-sigma_resol-'])
+    setfig()
     ax.plot(tm.theory_sphere(I0, R, sigma, q_min, q_max, points, sigma_resol)[0], tm.theory_sphere(I0, R, sigma, q_min, q_max, points, sigma_resol)[1], lw=1, color='r')
     fig_agg.draw()     
 
@@ -95,7 +96,8 @@ def theorydata():
     q_max=float(value['-SLIDER-q_max-'])
     points=int(value['-SLIDER-points-'])
     sigma_resol=int(value['-SLIDER-sigma_resol-'])
-    params={'I0':I0, 'R':R, 'sigma':sigma}
+    pdi=tm.MW_Mn(R, sigma)
+    params={'I0':I0, 'R':R, 'sigma':sigma, 'PDI':pdi}
     return tm.theory_sphere(I0, R, sigma, q_min, q_max, points, sigma_resol), params
 
 
@@ -108,18 +110,17 @@ while True:
     if event == None:
         break
     if event=='btn1':
-        setfig()
-        dataplot()
+        if value['filepath']=='':
+            sg.popup('データが選択されていません！', title='エラー')
+        else:
+            dataplot()
     if event=='btn2':
-        setfig()
         theoryplot()
     if event=='-SLIDER-I0-' or event=='-SLIDER-R-' or event=='-SLIDER-sigma-' or event=='-SLIDER-q_min-'or event=='-SLIDER-q_max-' or event=='-SLIDER-points-' or event=='-SLIDER-sigma_resol-':
         ax.cla()
         if value['filepath']=='':
-            setfig()
             theoryplot()
         else:
-            setfig()
             dataplot()
             theoryplot()
     if event=='btn3':
@@ -140,6 +141,6 @@ window.close()
 
 """
 created by Shin Takano
-version 1.0.0 18/10/2022
+version 1.0.1 18/10/2022
 
 """

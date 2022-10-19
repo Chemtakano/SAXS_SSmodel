@@ -44,6 +44,14 @@ def theory_sphere(I0, R, sigma, q_min, q_max, points, sigma_resol):
     
     return qq, Intensity()
 
+def MW_Mn(R, s):
+    def MW():
+        return (0.707*2**(0.5)*R**6+10.61*2**(0.5)*R**4*s**2+31.82*2**(0.5)*R**2*s**4+10.61*2**(0.5)*s**6)/(0.707*2**(0.5)*R**3+2.12*2**(0.5)*R*s**2)
+    def Mn():
+        return (0.707*2**(0.5)*R**3+2.12*2**(0.5)*R*s**2)/(0.707*2**(0.5))
+    
+    return MW()/Mn()
+
 def export(data, params, path):
     df=pd.DataFrame(data, index=["q", "I(q)"])
     dfT=df.T
