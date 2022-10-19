@@ -32,8 +32,7 @@ col_3=[
 
 layout=[
     [col_1],
-    [col_3],
-    [col_2]
+    [sg.Column(col_2), sg.Column(col_3)]
 ]
 
 
@@ -58,7 +57,7 @@ def draw_figure(canvas, figure):
     return figure_canvas_agg
 
 
-fig = plt.figure(figsize=(3, 3))
+fig = plt.figure(figsize=(3, 4))
 ax = fig.add_subplot(111)
 
 def setfig():
