@@ -39,7 +39,7 @@ layout=[
 
 #sg.theme('Topanga')  
 window=sg.Window(
-    'Solid Sphere Analysis App version 1.0.0',
+    'Solid Sphere Analysis App version 1.0.1',
     layout,
     finalize=True,
     auto_size_text=True,
