@@ -12,7 +12,7 @@ col_1=[
     [sg.Text('解析するファイル')],
     [sg.FileBrowse('Browse', file_types=(('csv file', '*.csv'),)), sg.InputText(key='filepath')],
     [sg.Button('データのプロット', key='btn1')],
-    [sg.Button('理論のプロット', key='btn2'), sg.Button('理論のプロットのクリア', key='btn3')]
+    [sg.Button('理論のプロット', key='btn2'), sg.Button('プロットのクリア', key='btn3')]
 ]
 
 col_2=[
@@ -21,7 +21,7 @@ col_2=[
 
 col_3=[
     [sg.Text('I0'), sg.Slider(range=(-10, 10), default_value=0, size=(80, 10), resolution=0.0001, orientation='h', key='-SLIDER-I0-', enable_events=True)],
-    [sg.Text('R'), sg.Slider(range=(1, 300), default_value=10, size=(80, 10), resolution=0.1, orientation='h', key='-SLIDER-R-', enable_events=True)],
+    [sg.Text('R'), sg.Slider(range=(1, 300), default_value=10, size=(80, 10), resolution=0.01, orientation='h', key='-SLIDER-R-', enable_events=True)],
     [sg.Text('sigma'), sg.Slider(range=(0.01, 100), default_value=0.01, size=(80, 10), resolution=0.01, orientation='h', key='-SLIDER-sigma-', enable_events=True)],
     [sg.Text('q_min'), sg.Slider(range=(-3, -0.5), default_value=-2, size=(80, 10), resolution=0.1, orientation='h', key='-SLIDER-q_min-', enable_events=True)],
     [sg.Text('q_max'), sg.Slider(range=(0, 1.5), default_value=0.5, size=(80, 10), resolution=0.01, orientation='h', key='-SLIDER-q_max-', enable_events=True)],
