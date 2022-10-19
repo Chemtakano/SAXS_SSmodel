@@ -73,7 +73,7 @@ def setfig():
 def dataplot():
     path=value['filepath']
     setfig()
-    ax.scatter(tm.data(path)['q'], tm.data(path)['i'], s=2)
+    ax.scatter(tm.data(path)['q'], tm.data(path)['i'], s=1)
     fig_agg.draw()
 
 def theoryplot():
@@ -128,7 +128,7 @@ while True:
         setfig()
         sg.popup('データはリセットされました。\t新しいデータを読み込もプロットをしてください。', title='')
     if event=='btn_export':
-        s_folder=sg.popup_get_folder('フォルダーを指定してください。', title='保存フォルダーの指定')
+        s_folder=sg.popup_get_folder('フォルダーを指定してください。', title='保存フォルダーの指定', initial_folder=value['filepath'])
         if value['filepath']==None:
             default_text=''
         else:
