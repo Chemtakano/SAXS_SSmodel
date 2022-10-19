@@ -2,6 +2,7 @@ import PySimpleGUI as sg
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import theo_module as tm
 import matplotlib.pyplot as plt
+import os
 
 
     
@@ -100,17 +101,21 @@ def theorydata():
 
 fig_agg = draw_figure(window['-CANVAS_data-'].TKCanvas, fig)
 
+setfig()
+
 while True:
     event, value = window.read()
     if event == None:
         break
     if event=='btn1':
+        setfig()
         dataplot()
     if event=='btn2':
         setfig()
         theoryplot()
     if event=='-SLIDER-I0-' or event=='-SLIDER-R-' or event=='-SLIDER-sigma-' or event=='-SLIDER-q_min-'or event=='-SLIDER-q_max-' or event=='-SLIDER-points-' or event=='-SLIDER-sigma_resol-':
         ax.cla()
+        setfig()
         dataplot()
         theoryplot()
     if event=='btn3':
@@ -118,8 +123,12 @@ while True:
         setfig()
         sg.popup('データはリセットされました。\t新しいデータを読み込もプロットをしてください。', title='')
     if event=='btn_export':
-        s_folder=sg.popup_get_folder('フォルダーを指定してください。')
-        s_name=sg.popup_get_text('作成するファイル名を入力してください。')
+        s_folder=sg.popup_get_folder('フォルダーを指定してください。', title='保存フォルダーの指定')
+        if value['filepath']==None:
+            default_text=''
+        else:
+            default_text='{}'.format(os.path.splitext(os.path.basename(value['filepath']))[0])
+        s_name=sg.popup_get_text('作成するファイル名を入力してください。', title='保存ファイル名の指定', default_text=default_text)
         tm.export(theorydata()[0],theorydata()[1], s_folder+'/'+s_name)
         
         
