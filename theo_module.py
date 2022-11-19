@@ -3,7 +3,7 @@ import numpy as np
 import openpyxl as opx
 
 def data(path):
-    df=pd.read_csv(path, skiprows=1, usecols=[0,4], header=None, names=['q','i'])
+    df=pd.read_csv(path, skiprows=1, usecols=[0,6], header=None, names=['q','i'])
     return df
 
 def theory_sphere(I0, R, sigma, q_min, q_max, points, sigma_resol):
@@ -62,7 +62,7 @@ def export(data, params, path):
     
     with pd.ExcelWriter(path+'.xlsx') as writer:
         dfT.to_excel(writer, index=None, sheet_name='profile')
-        df2.to_excel(writer, sheet_name='parmeters', index=False)
+        df2.to_excel(writer, sheet_name='parameters', index=False)
     
 
 
