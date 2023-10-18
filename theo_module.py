@@ -52,21 +52,3 @@ def MW_Mn(R, s):
     
     return MW()/Mn()
 
-def export(data, params, path):
-    df=pd.DataFrame(data, index=["q", "I(q)"])
-    dfT=df.T
-    df2 = pd.json_normalize(params)
-    
-    workbook = opx.Workbook()
-    workbook.save(path+'.xlsx')
-    
-    with pd.ExcelWriter(path+'.xlsx') as writer:
-        dfT.to_excel(writer, index=None, sheet_name='profile')
-        df2.to_excel(writer, sheet_name='parameters', index=False)
-    
-
-
-
-"""
-def MW_Mn(I0):
-    return """
